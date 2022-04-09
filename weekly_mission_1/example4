@@ -1,0 +1,65 @@
+class Logger {
+  constructor(name) {
+    // this es una variable para referenciar el valor del contexto local de esta clase
+    this.name = name // Estás variables se le conocen como atributos
+  }
+
+  // método
+  // this.name es la variable que se guarda en el contexto local
+  // message es una variable que se le pasa al ejecutar este método
+  info (message) {
+    console.log(`[Objeto con nombre: ${this.name}] info: ${message}`)
+  }
+
+  // método
+  verbose (message) {
+    console.log(`[Objeto con nombre: ${this.name}] verbose: ${message}`)
+  }
+}
+
+// Esta clase se exporta en este módulo
+module.exports = Logger
+main.js
+
+const Logger = require('./logger') // Invocas el módulo que contiene la clase
+
+// Creación de un objeto
+const dbLogger = new Logger('DB') // Creas un objeto nuevo, esto llama por default el constructor de la clase
+// invocación del método
+dbLogger.info('This is an informational message')
+
+// Creación de otro objeto
+const accessLogger = new Logger('ACCESS')
+accessLogger.verbose('This is a verbose message')
+🪐 Example 5: Clases y Objetos
+Crea una carpeta llamada example5 dentro de la carpeta weekly_mission_1.
+Crea los siguientes archivos con el contenido indicado.
+Ejecuta el siguiente comando: node main.js
+logger.js
+
+class Logger {
+  constructor(name){
+    // Al crear este objeto se guardarán estos valores
+    this.count = 0
+    this.name = name
+  }
+
+  log(message) {
+    this.count++ // se aumenta el contador interno al llamar este método
+    console.log('[' + this.name + '] ' + message)
+  }
+}
+
+module.exports = new Logger('DEFAULT') // Instanciación del objeto y se exporta
+main.js
+
+const logger = require('./logger')
+
+// Ya se puede usar directamente el objeto instanciado en el módulo logger
+logger.log('This is an informational message')
+
+/*
+También pueder instanciar uno nuevo de esta manera:
+  const customLogger = new logger.constructor('CUSTOM')
+  customLogger.log('This is an informational message')
+*/
